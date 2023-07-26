@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+body {
+  background-image: url(../src/assets/bg-main-desktop.png);
+  background-repeat: no-repeat;
+}
+.cardOne,
+.cardTwo {
+  background-color: aliceblue;
+  color: black;
+}
+
+.App {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  outline: 1px solid black;
+  height: 100vh;
+  /* gap: 5rem; */
+}
+
+label {
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+input {
+  height: 2rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+  outline: 1px solid hsl(270, 3%, 87%);
+}
+input:focus {
+  outline: 1px solid hsl(279, 6%, 55%);
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.theForm {
+  width: 20rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formBase {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.date {
+  width: 4rem;
+}
+
+.submit {
+  margin: auto;
+  padding-top: 1rem;
+}
+button {
+  width: 20rem;
+  height: 2rem;
+  background-color: hsl(278, 68%, 11%);
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
