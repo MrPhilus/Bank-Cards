@@ -18,7 +18,7 @@ const FormComponent = () => {
         <label htmlFor="">CARD NUMBER</label>
         <input type="number" onInput={(e) => setCardNum(e.target.value)} />
         <label htmlFor="">EXP. DATE (MM/YY)</label>
-        <label htmlFor="">CVC</label>
+
         <div className="formBase">
           <input
             className="date"
@@ -30,7 +30,7 @@ const FormComponent = () => {
             type="number"
             onInput={(e) => setExpDateYear(e.target.value)}
           />
-
+          <label htmlFor="">CVC</label>
           <input type="number" onInput={(e) => setCvcNum(e.target.value)} />
         </div>
 
