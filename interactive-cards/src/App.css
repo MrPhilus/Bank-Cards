@@ -15,9 +15,10 @@ body {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  /* outline: 1px solid black; */
   height: 100vh;
   flex-wrap: wrap;
+  max-width: 1440px;
+  margin: auto;
 }
 
 .cardOne,
@@ -25,7 +26,6 @@ body {
   width: min-content;
   position: relative;
   color: #fff;
-  /* outline: 1px solid red; */
 }
 
 .cardOne > *:not(.cardOneBg),
@@ -35,7 +35,6 @@ body {
 
 .cardOneBg,
 .cardTwoBg {
-  /* max-width: revert; */
   max-width: 24rem;
 }
 .cardOne {
@@ -51,7 +50,7 @@ body {
   font-size: 1.7rem;
   letter-spacing: 3px;
   top: 55%;
-  left: 2rem;
+  left: 2.5rem;
   font-size: 1.5rem;
 }
 .cardLogo {
@@ -64,6 +63,8 @@ body {
   font-size: 0.8rem;
   letter-spacing: 2px;
   text-transform: uppercase;
+  word-break: break-all;
+  width: 16rem;
 }
 .cardExp {
   bottom: 1.5rem;
@@ -97,11 +98,6 @@ input {
 }
 input:focus {
   outline: 1px solid hsl(279, 6%, 55%);
-}
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
 }
 
 .theForm {
@@ -146,4 +142,255 @@ button {
   color: white;
   border: none;
   border-radius: 5px;
+}
+
+@media only screen and (max-width: 768px) {
+  body {
+    background-image: url(../src/assets/bg-main-desktop.png);
+    background-repeat: no-repeat;
+    background-size: 16rem 100vh;
+  }
+
+  .App {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100vh;
+    gap: 5rem;
+  }
+
+  .cardOneBg,
+  .cardTwoBg {
+    max-width: 16rem;
+  }
+
+  .cardOne,
+  .cardTwo {
+    width: min-content;
+    position: relative;
+    color: #fff;
+  }
+
+  .cardOne > *:not(.cardOneBg),
+  .cardTwo > *:not(.cardTwoBg) {
+    position: absolute;
+  }
+
+  .cardOne {
+    bottom: 0.8rem;
+    right: 2rem;
+  }
+  .cardTwo {
+    top: 0.8rem;
+    left: 4rem;
+  }
+
+  .cardNumber {
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    top: 50%;
+    left: 2rem;
+  }
+  .cardLogo {
+    top: 1rem;
+    left: 1rem;
+    width: 2rem;
+  }
+  .cardName {
+    left: 1rem;
+    bottom: 1rem;
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    word-break: break-all;
+    width: 10rem;
+  }
+  .cardExp {
+    bottom: 1rem;
+    right: 1rem;
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+  }
+  .cardCVC {
+    bottom: 48%;
+    right: 2rem;
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+  }
+
+  .theForm {
+    width: 14rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .date {
+    width: 3rem;
+  }
+  .cvc {
+    width: 6rem;
+  }
+
+  label {
+    font-size: 0.6rem;
+  }
+
+  button {
+    width: 14rem;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  body {
+    background-image: url(../src/assets/bg-main-mobile.png);
+    background-repeat: no-repeat;
+    background-size: 100vw 14rem;
+    /* background-size: contain; */
+  }
+
+  .App {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100vh;
+    gap: 5rem;
+    /* flex-wrap: wrap; */
+  }
+
+  .cardOneBg,
+  .cardTwoBg {
+    max-width: 16rem;
+  }
+
+  .cardOne,
+  .cardTwo {
+    width: min-content;
+    position: relative;
+    color: #fff;
+    margin-top: -4rem;
+  }
+
+  .cardOne > *:not(.cardOneBg),
+  .cardTwo > *:not(.cardTwoBg) {
+    position: absolute;
+  }
+
+  .cardOne {
+    top: 10rem;
+    right: 4rem;
+    z-index: 3;
+  }
+  .cardTwo {
+    top: -0.1rem;
+    left: 4rem;
+  }
+
+  .cardNumber {
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    top: 50%;
+    left: 2rem;
+  }
+  .cardLogo {
+    top: 1rem;
+    left: 1rem;
+    width: 2rem;
+  }
+  .cardName {
+    left: 1rem;
+    bottom: 1rem;
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    word-break: break-all;
+    width: 10rem;
+  }
+  .cardExp {
+    bottom: 1rem;
+    right: 1rem;
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+  }
+  .cardCVC {
+    bottom: 48%;
+    right: 2rem;
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+  }
+
+  .theForm {
+    width: 18rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .date {
+    width: 4rem;
+  }
+  .cvc {
+    width: 8rem;
+  }
+
+  label {
+    font-size: 0.8rem;
+  }
+
+  button {
+    width: 18rem;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  body {
+    background-image: url(../src/assets/bg-main-mobile.png);
+    background-repeat: no-repeat;
+    background-size: 24rem 12rem;
+    /* background-size: contain; */
+  }
+
+  .App {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100vh;
+    gap: 5rem;
+    /* flex-wrap: wrap; */
+  }
+
+  .cardOneBg,
+  .cardTwoBg {
+    max-width: 14rem;
+  }
+
+  .cardOne,
+  .cardTwo {
+    width: min-content;
+    position: relative;
+    color: #fff;
+    margin-top: -4rem;
+  }
+
+  .cardOne > *:not(.cardOneBg),
+  .cardTwo > *:not(.cardTwoBg) {
+    position: absolute;
+  }
+
+  .cardOne {
+    top: 8.2rem;
+    right: 2rem;
+    z-index: 3;
+  }
+  .cardTwo {
+    top: -0.1rem;
+    left: 2rem;
+  }
+
+  .cardNumber {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    top: 50%;
+    left: 1.5rem;
+  }
 }

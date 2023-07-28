@@ -4,10 +4,15 @@ import "../App.css";
 
 const FormComponent = () => {
   const {
+    holderName,
     setHolderName,
+    cardNum,
     setCardNum,
+    expDateMonth,
     setExpDateMonth,
+    expDateYear,
     setExpDateYear,
+    cvcNum,
     setCvcNum,
   } = useContext(CardContext);
 
@@ -37,7 +42,7 @@ const FormComponent = () => {
         <input
           type="text"
           onInput={(e) => setHolderName(e.target.value)}
-          placeholder="e.g Jane Appleseed"
+          placeholder={holderName}
         />
         <label className="labels" htmlFor="">
           CARD NUMBER
@@ -46,9 +51,8 @@ const FormComponent = () => {
           type="text"
           onInput={(e) => setCardNum(e.target.value)}
           onChange={handleChange}
-          pattern="\d*"
           maxLength="16"
-          placeholder="e.g 1234 5678 9123 0000"
+          placeholder={cardNum}
         />
 
         <div className="formBase">
@@ -63,7 +67,7 @@ const FormComponent = () => {
                 onInput={(e) => setExpDateMonth(e.target.value)}
                 pattern="\d*"
                 maxLength="2"
-                placeholder="MM"
+                placeholder={expDateMonth}
               />
               <label className="labels" htmlFor="" hidden>
                 EXP. DATE (MM/YY)
@@ -74,7 +78,7 @@ const FormComponent = () => {
                 onInput={(e) => setExpDateYear(e.target.value)}
                 pattern="\d*"
                 maxLength="2"
-                placeholder="YY"
+                placeholder={expDateYear}
               />
             </div>
           </div>
@@ -88,7 +92,7 @@ const FormComponent = () => {
               onInput={(e) => setCvcNum(e.target.value)}
               pattern="\d*"
               maxLength="3"
-              placeholder="e.g 123"
+              placeholder={cvcNum}
             />
           </div>
         </div>

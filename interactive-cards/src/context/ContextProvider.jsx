@@ -3,11 +3,11 @@ import { createContext, useState } from "react";
 export const CardContext = createContext();
 
 const ContextProvider = ({ children }) => {
-  const [holderName, setHolderName] = useState("");
-  const [cardNum, setCardNum] = useState(0);
-  const [expDateMonth, setExpDateMonth] = useState(0);
-  const [expDateYear, setExpDateYear] = useState(0);
-  const [cvcNum, setCvcNum] = useState(0);
+  const [holderName, setHolderName] = useState("Jane Appleseed");
+  const [cardNum, setCardNum] = useState("0000 0000 0000 0000");
+  const [expDateMonth, setExpDateMonth] = useState("MM");
+  const [expDateYear, setExpDateYear] = useState("YY");
+  const [cvcNum, setCvcNum] = useState(123);
 
   const objectsPassed = {
     holderName,
