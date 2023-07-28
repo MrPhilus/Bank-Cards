@@ -1,6 +1,9 @@
 import "../App.css";
 import { useContext } from "react";
 import { CardContext } from "../context/ContextProvider";
+import cardFront from "../assets/bg-card-front.png";
+import cardBack from "../assets/bg-card-back.png";
+import cardLogo from "../assets/card-logo.svg";
 
 const CardComponent = () => {
   const { holderName, cardNum, expDateMonth, expDateYear, cvcNum } =
@@ -9,13 +12,17 @@ const CardComponent = () => {
   return (
     <div>
       <div className="cardOne">
-        <p>{holderName}</p>
-        <p>{cardNum}</p>
-        <p>{expDateMonth}</p>
-        <p>{expDateYear}</p>
+        <img className="cardLogo" src={cardLogo} alt="" />
+        <img className="cardOneBg" src={cardFront} alt="" />
+        <p className="cardName">{holderName}</p>
+        <p className="cardNumber">{cardNum}</p>
+        <p className="cardExp">
+          {expDateMonth}/{expDateYear}
+        </p>
       </div>
       <div className="cardTwo">
-        <p>{cvcNum}</p>
+        <img className="cardTwoBg" src={cardBack} alt="" />
+        <p className="cardCVC">{cvcNum}</p>
       </div>
     </div>
   );
