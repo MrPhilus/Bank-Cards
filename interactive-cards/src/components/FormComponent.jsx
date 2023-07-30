@@ -33,6 +33,7 @@ const FormComponent = () => {
     const formattedValue = formatCardNumber(e.target.value);
     setCardNum(formattedValue);
   };
+
   return (
     <div>
       <form className="theForm" action="">
