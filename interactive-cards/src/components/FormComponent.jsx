@@ -65,8 +65,30 @@ const FormComponent = () => {
               <input
                 className="date"
                 type="text"
-                onInput={(e) => setExpDateMonth(e.target.value)}
-                pattern="\d*"
+                // onInput={(e) => {
+                //   const monthValue = e.target.value.replace(/\D/g, "");
+                //   setExpDateMonth(monthValue.padStart(2, "0"));
+                // }}
+                // onInput={(e) => {
+                //   const monthValue = e.target.value.replace(/\D/g, "");
+                //   // Limit the month value to 12
+                //   const validMonth = Math.min(parseInt(monthValue, 10), 12);
+                //   // Ensure two-digit format with leading zero for months 1 to 9
+                //   const formattedMonth = validMonth.toString().padStart(2, "0");
+                //   setExpDateMonth(formattedMonth);
+                // }}
+                onInput={(e) => {
+                  const monthValue = e.target.value.replace(/\D/g, "");
+                  // Parse the numeric value. If it's not a valid number, set it to 0
+                  const validMonth = parseInt(monthValue, 10) || 0;
+                  // Limit the month value to a range of 0 to 12
+                  const clampedMonth = Math.max(Math.min(validMonth, 12), 0);
+                  // Ensure two-digit format with leading zero for months 1 to 9
+                  const formattedMonth = clampedMonth
+                    .toString()
+                    .padStart(2, "0");
+                  setExpDateMonth(formattedMonth);
+                }}
                 maxLength="2"
                 placeholder={expDateMonth}
               />
@@ -76,8 +98,10 @@ const FormComponent = () => {
               <input
                 className="date"
                 type="text"
-                onInput={(e) => setExpDateYear(e.target.value)}
-                pattern="\d*"
+                onInput={(e) => {
+                  const yearValue = e.target.value.replace(/\D/g, "");
+                  setExpDateYear(yearValue.padStart(2, "0"));
+                }}
                 maxLength="2"
                 placeholder={expDateYear}
               />
@@ -90,8 +114,10 @@ const FormComponent = () => {
             <input
               className="cvc"
               type="text"
-              onInput={(e) => setCvcNum(e.target.value)}
-              pattern="\d*"
+              onInput={(e) => {
+                const cvcValue = e.target.value.replace(/\D/g, "");
+                setCvcNum(cvcValue.padStart(3, "0"));
+              }}
               maxLength="3"
               placeholder={cvcNum}
             />
