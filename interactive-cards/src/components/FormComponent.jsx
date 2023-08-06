@@ -1,5 +1,6 @@
 import { CardContext } from "../context/ContextProvider";
 import { useContext } from "react";
+import { useFormik } from "formik";
 import "../App.css";
 
 const FormComponent = () => {
@@ -16,111 +17,177 @@ const FormComponent = () => {
     setCvcNum,
   } = useContext(CardContext);
 
-  const formatCardNumber = (input) => {
-    // Remove all non-numeric characters from the input
-    const cleanedInput = input.replace(/\D/g, "");
-
-    // Divide the input into sets of 4 digits
-    const formattedInput = cleanedInput.replace(/(.{4})/g, "$1 ");
-
-    // Limit the input to a maximum of 16 digits
-    const truncatedInput = formattedInput.substr(0, 19);
-
-    return truncatedInput;
+  const handleFormSubmit = (values) => {
+    // Here, you can handle the form submission logic if needed
+    // For example, you can save the form data to your backend or take any other action
+    console.log(values);
   };
 
-  const handleChange = (e) => {
-    const formattedValue = formatCardNumber(e.target.value);
-    setCardNum(formattedValue);
-  };
+  const formik = useFormik({
+    initialValues: {
+      holderName: "",
+      cardNum: "",
+      expDateMonth: "",
+      expDateYear: "",
+      cvcNum: "",
+    },
+    onSubmit: handleFormSubmit,
+    validate: (values) => {
+      const errors = {};
+      if (!values.holderName) {
+        errors.holderName = "Can't be blank";
+      }
+      if (!values.cardNum) {
+        errors.cardNum = "Can't be blank";
+      } else if (!/^\d*$/i.test(values.cardNum)) {
+        errors.cardNum = "Numbers only";
+      }
+      if (!values.expDateMonth && !values.expDateYear) {
+        errors.expDateMonth = "Can't be blank";
+      } else if (
+        !/^\d*$/i.test(values.expDateMonth) ||
+        values.expDateMonth > 12
+      ) {
+        errors.expDateMonth = "Wrong date format!";
+      }
+      if (!values.expDateYear) {
+        errors.expDateYear = "Can't be blank";
+      } else if (!/^\d*$/i.test(values.expDateYear)) {
+        errors.expDateYear = "Wrong date format!";
+      }
+      if (!values.cvcNum) {
+        errors.cvcNum = "Can't be blank";
+      } else if (!/^\d*$/i.test(values.cvcNum)) {
+        errors.cvcNum = "Numbers only!";
+      }
+
+      return errors;
+    },
+  });
 
   return (
     <div>
-      <form className="theForm" action="">
-        <label className="labels" htmlFor="">
+      <form className="theForm" onSubmit={formik.handleSubmit}>
+        <label className="labels" htmlFor="holderName">
           CARDHOLDER NAME
         </label>
         <input
           type="text"
+          name="holderName"
+          value={formik.values.holderName}
+          onChange={formik.handleChange}
           onInput={(e) => setHolderName(e.target.value)}
+          onBlur={formik.handleBlur}
+          maxLength="24"
+          className={
+            formik.errors.holderName && formik.touched.holderName
+              ? "error-input"
+              : ""
+          }
           placeholder={holderName}
         />
-        <label className="labels" htmlFor="">
+        {formik.errors.holderName && formik.touched.holderName ? (
+          <p className="error-text">{formik.errors.holderName}</p>
+        ) : null}
+
+        <label className="labels" htmlFor="cardNum">
           CARD NUMBER
         </label>
         <input
           type="text"
+          name="cardNum"
+          value={formik.values.cardNum}
+          onChange={formik.handleChange}
           onInput={(e) => setCardNum(e.target.value)}
-          onChange={handleChange}
+          onBlur={formik.handleBlur}
           maxLength="16"
+          className={
+            formik.errors.cardNum && formik.touched.cardNum ? "error-input" : ""
+          }
           placeholder={cardNum}
         />
+        {formik.errors.cardNum && formik.touched.cardNum && (
+          <p className="error-text">{formik.errors.cardNum}</p>
+        )}
 
         <div className="formBase">
           <div className="dateInputs">
-            <label className="labels" htmlFor="">
+            <label className="labels" htmlFor="expDateMonth">
               EXP. DATE (MM/YY)
             </label>
             <div>
               <input
-                className="date"
+                className={
+                  formik.errors.expDateMonth && formik.touched.expDateMonth
+                    ? "error-date"
+                    : "date"
+                }
+                onBlur={formik.handleBlur}
                 type="text"
-                // onInput={(e) => {
-                //   const monthValue = e.target.value.replace(/\D/g, "");
-                //   setExpDateMonth(monthValue.padStart(2, "0"));
-                // }}
-                // onInput={(e) => {
-                //   const monthValue = e.target.value.replace(/\D/g, "");
-                //   // Limit the month value to 12
-                //   const validMonth = Math.min(parseInt(monthValue, 10), 12);
-                //   // Ensure two-digit format with leading zero for months 1 to 9
-                //   const formattedMonth = validMonth.toString().padStart(2, "0");
-                //   setExpDateMonth(formattedMonth);
-                // }}
+                name="expDateMonth"
+                value={formik.values.expDateMonth}
+                onChange={formik.handleChange}
                 onInput={(e) => {
-                  const monthValue = e.target.value.replace(/\D/g, "");
-                  // Parse the numeric value. If it's not a valid number, set it to 0
-                  const validMonth = parseInt(monthValue, 10) || 0;
-                  // Limit the month value to a range of 0 to 12
-                  const clampedMonth = Math.max(Math.min(validMonth, 12), 0);
-                  // Ensure two-digit format with leading zero for months 1 to 9
-                  const formattedMonth = clampedMonth
-                    .toString()
-                    .padStart(2, "0");
-                  setExpDateMonth(formattedMonth);
+                  setExpDateMonth(e.target.value.padStart(2, "0"));
                 }}
                 maxLength="2"
                 placeholder={expDateMonth}
               />
-              <label className="labels" htmlFor="" hidden>
+
+              <label className="labels" htmlFor="expDateYear" hidden>
                 EXP. DATE (MM/YY)
               </label>
               <input
-                className="date"
+                className={
+                  formik.errors.expDateYear && formik.touched.expDateYear
+                    ? "error-date"
+                    : "date"
+                }
                 type="text"
+                name="expDateYear"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                value={formik.values.expDateYear}
                 onInput={(e) => {
-                  const yearValue = e.target.value.replace(/\D/g, "");
-                  setExpDateYear(yearValue.padStart(2, "0"));
+                  // const yearValue = e.target.value.replace(/\D/g, "");
+                  setExpDateYear(e.target.value.padStart(2, "0"));
                 }}
                 maxLength="2"
                 placeholder={expDateYear}
               />
             </div>
+            {formik.errors.expDateMonth && formik.touched.expDateMonth ? (
+              <p className="error-text">{formik.errors.expDateMonth}</p>
+            ) : formik.errors.expDateYear && formik.touched.expDateYear ? (
+              <p className="error-text">{formik.errors.expDateYear}</p>
+            ) : null}
           </div>
+
           <div className="cvcInput">
-            <label className="labels" htmlFor="">
+            <label className="labels" htmlFor="cvcNum">
               CVC
             </label>
             <input
-              className="cvc"
+              className={
+                formik.errors.cvcNum && formik.touched.cvcNum
+                  ? "error-cvc"
+                  : "cvc"
+              }
               type="text"
+              name="cvcNum"
+              value={formik.values.cvcNum}
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
               onInput={(e) => {
-                const cvcValue = e.target.value.replace(/\D/g, "");
-                setCvcNum(cvcValue.padStart(3, "0"));
+                // const cvcValue = e.target.value.replace(/\D/g, "");
+                setCvcNum(e.target.value.padStart(3, "0"));
               }}
               maxLength="3"
               placeholder={cvcNum}
             />
+            {formik.errors.cvcNum && formik.touched.cvcNum && (
+              <p className="error-text">{formik.errors.cvcNum}</p>
+            )}
           </div>
         </div>
         <div className="submit">

@@ -51,7 +51,7 @@ body {
   font-size: 1.7rem;
   letter-spacing: 3px;
   top: 55%;
-  left: 2.5rem;
+  left: 1.5rem;
   font-size: 1.5rem;
 }
 .cardLogo {
@@ -119,6 +119,7 @@ input:focus {
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
+  height: 4rem;
 }
 .dateInputs > div {
   display: flex;
@@ -140,6 +141,26 @@ button {
   color: white;
   border: none;
   border-radius: 5px;
+}
+/* Add styles for error input */
+.error-input {
+  outline: 2px solid red;
+}
+
+.error-date {
+  outline: 2px solid red;
+  width: 5rem;
+}
+
+.error-cvc {
+  outline: 2px solid red;
+  width: 7.5rem;
+}
+/* Add styles for error text */
+.error-text {
+  color: red;
+  font-size: 0.7rem;
+  margin-top: -0.5rem;
 }
 
 @media only screen and (max-width: 768px) {
@@ -231,10 +252,19 @@ button {
   }
 
   label {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
   }
   .labels {
     letter-spacing: 0.5px;
+    font-size: 0.6rem;
+  }
+
+  .error-date {
+    width: 3.5rem;
+  }
+
+  .error-cvc {
+    width: 5.5rem;
   }
 
   button {
@@ -393,5 +423,9 @@ button {
     letter-spacing: 2px;
     top: 50%;
     left: 1.5rem;
+  }
+
+  .error-date {
+    width: 4.5rem;
   }
 }

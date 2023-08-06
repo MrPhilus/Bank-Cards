@@ -15,7 +15,7 @@ const CardComponent = () => {
         <img className="cardLogo" src={cardLogo} alt="" />
         <img className="cardOneBg" src={cardFront} alt="" />
         <p className="cardName">{holderName}</p>
-        <p className="cardNumber">{cardNum}</p>
+        <p className="cardNumber">{cardNum.replace(/(.{4})/g, "$1 ")}</p>
         <p className="cardExp">
           {expDateMonth}/{expDateYear}
         </p>
