@@ -142,7 +142,7 @@ button {
   border: none;
   border-radius: 5px;
 }
-/* Add styles for error input */
+
 .error-input {
   outline: 2px solid red;
 }
@@ -156,7 +156,7 @@ button {
   outline: 2px solid red;
   width: 7.5rem;
 }
-/* Add styles for error text */
+
 .error-text {
   color: red;
   font-size: 0.7rem;
@@ -277,7 +277,6 @@ button {
     background-image: url(../src/assets/bg-main-mobile.png);
     background-repeat: no-repeat;
     background-size: 100vw 14rem;
-    /* background-size: contain; */
   }
 
   .App {
@@ -286,7 +285,6 @@ button {
     align-items: center;
     height: 100vh;
     gap: 5rem;
-    /* flex-wrap: wrap; */
   }
 
   .cardOneBg,
@@ -368,6 +366,14 @@ button {
     font-size: 0.8rem;
   }
 
+  .error-date {
+    width: 4.5rem;
+  }
+
+  .error-cvc {
+    width: 7.5rem;
+  }
+
   button {
     width: 18rem;
   }
@@ -378,7 +384,6 @@ button {
     background-image: url(../src/assets/bg-main-mobile.png);
     background-repeat: no-repeat;
     background-size: 24rem 12rem;
-    /* background-size: contain; */
   }
 
   .App {
@@ -387,7 +392,6 @@ button {
     align-items: center;
     height: 100vh;
     gap: 5rem;
-    /* flex-wrap: wrap; */
   }
 
   .cardOneBg,
@@ -427,5 +431,9 @@ button {
 
   .error-date {
     width: 4.5rem;
+  }
+
+  .error-cvc {
+    width: 7rem;
   }
 }

@@ -18,8 +18,6 @@ const FormComponent = () => {
   } = useContext(CardContext);
 
   const handleFormSubmit = (values) => {
-    // Here, you can handle the form submission logic if needed
-    // For example, you can save the form data to your backend or take any other action
     console.log(values);
   };
 
@@ -44,16 +42,15 @@ const FormComponent = () => {
       }
       if (!values.expDateMonth && !values.expDateYear) {
         errors.expDateMonth = "Can't be blank";
-      } else if (
-        !/^\d*$/i.test(values.expDateMonth) ||
-        values.expDateMonth > 12
-      ) {
-        errors.expDateMonth = "Wrong date format!";
+      } else if (!/^\d*$/i.test(values.expDateMonth)) {
+        errors.expDateMonth = "Months must be numbers only!";
+      } else if (values.expDateMonth > 12) {
+        errors.expDateMonth = "Invalid month";
       }
       if (!values.expDateYear) {
         errors.expDateYear = "Can't be blank";
       } else if (!/^\d*$/i.test(values.expDateYear)) {
-        errors.expDateYear = "Wrong date format!";
+        errors.expDateYear = "Years must be numbers only!";
       }
       if (!values.cvcNum) {
         errors.cvcNum = "Can't be blank";
@@ -149,7 +146,6 @@ const FormComponent = () => {
                 onChange={formik.handleChange}
                 value={formik.values.expDateYear}
                 onInput={(e) => {
-                  // const yearValue = e.target.value.replace(/\D/g, "");
                   setExpDateYear(e.target.value.padStart(2, "0"));
                 }}
                 maxLength="2"
@@ -179,7 +175,6 @@ const FormComponent = () => {
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
               onInput={(e) => {
-                // const cvcValue = e.target.value.replace(/\D/g, "");
                 setCvcNum(e.target.value.padStart(3, "0"));
               }}
               maxLength="3"
