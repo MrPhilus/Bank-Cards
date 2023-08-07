@@ -9,6 +9,7 @@ const ContextProvider = ({ children }) => {
   const [expDateMonth, setExpDateMonth] = useState("MM");
   const [expDateYear, setExpDateYear] = useState("YY");
   const [cvcNum, setCvcNum] = useState(123);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const objectsPassed = {
     holderName,
@@ -21,6 +22,8 @@ const ContextProvider = ({ children }) => {
     setExpDateYear,
     cvcNum,
     setCvcNum,
+    isSubmitted,
+    setIsSubmitted,
   };
 
   return (
