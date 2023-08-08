@@ -40,6 +40,8 @@ const FormComponent = () => {
         errors.cardNum = "Can't be blank";
       } else if (!/^\d*$/i.test(values.cardNum)) {
         errors.cardNum = "Wrong format,numbers only";
+      } else if (values.cardNum.length !== 16) {
+        errors.cardNum = "Card number must be 16 digits";
       }
       if (!values.expDateMonth && !values.expDateYear) {
         errors.expDateMonth = "Can't be blank";
